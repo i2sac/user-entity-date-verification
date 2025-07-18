@@ -5,7 +5,8 @@ run:
   modules-download-mode: readonly
 
 output:
-  format: colored-line-number
+  formats:
+    - format: colored-line-number
   print-issued-lines: true
   print-linter-name: true
 
@@ -14,12 +15,13 @@ linters-settings:
     check-type-assertions: true
     check-blank: true
   govet:
-    check-shadowing: true
+    enable:
+      - shadow
   gofmt:
     simplify: true
   goimports:
     local-prefixes: github.com/i2sac/user-entity-date-verification
-  golint:
+  revive:
     min-confidence: 0.8
   misspell:
     locale: US
@@ -35,16 +37,13 @@ linters:
     - staticcheck
     - typecheck
     - unused
-    - varcheck
-    - structcheck
-    - deadcode
     - gofmt
     - goimports
     - misspell
     - gocritic
     - revive
+    - shadow
   disable:
-    - maligned
     - prealloc
 
 issues:
