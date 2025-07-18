@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/i2sac/user-entity-date-verification"
+	userdate "github.com/i2sac/user-entity-date-verification"
 )
 
 func ExampleNewUser() {

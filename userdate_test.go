@@ -59,7 +59,8 @@ func TestNewUser(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			user, err := NewUser(tt.id, tt.birthDate, tt.userName)
-			if tt.wantErr {
+			switch {
+			case tt.wantErr:
 				if err == nil {
 					t.Errorf("NewUser() expected error but got none")
 					return
@@ -71,9 +72,9 @@ func TestNewUser(t *testing.T) {
 				} else {
 					t.Errorf("NewUser() error type = %T, want *DateValidationError", err)
 				}
-			} else if err != nil {
+			case err != nil:
 				t.Errorf("NewUser() unexpected error = %v", err)
-			} else {
+			default:
 				if user.ID != tt.id {
 					t.Errorf("NewUser() ID = %v, want %v", user.ID, tt.id)
 				}

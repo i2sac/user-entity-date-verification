@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/i2sac/user-entity-date-verification"
+	userdate "github.com/i2sac/user-entity-date-verification"
 )
 
 // parseTime is a helper function to parse time strings and exit on error.
