@@ -381,20 +381,23 @@ func TestValidateHistoricalRealism(t *testing.T) {
 
 // Benchmark tests
 func BenchmarkValidateEntityDate(b *testing.B) {
-	user, _ := NewUser("user123", mustParseDate("1990-01-01"), "John Doe")
+	user, err := NewUser("user123", mustParseDate("1990-01-01"), "John Doe")
+	if err != nil {
+		b.Fatal(err)
+	}
 	entityDate := mustParseDate("2020-01-01")
 
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		ValidateEntityDate(user, entityDate, "certification")
+	
+	for b.Loop() {
+		_ = ValidateEntityDate(user, entityDate, "certification")
 	}
 }
 
 func BenchmarkNewUser(b *testing.B) {
 	birthDate := mustParseDate("1990-01-01")
 
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		NewUser("user123", birthDate, "John Doe")
+	
+	for b.Loop() {
+		_, _ = NewUser("user123", birthDate, "John Doe")
 	}
 }
