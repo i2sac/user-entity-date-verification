@@ -71,11 +71,9 @@ func TestNewUser(t *testing.T) {
 				} else {
 					t.Errorf("NewUser() error type = %T, want *DateValidationError", err)
 				}
+			} else if err != nil {
+				t.Errorf("NewUser() unexpected error = %v", err)
 			} else {
-				if err != nil {
-					t.Errorf("NewUser() unexpected error = %v", err)
-					return
-				}
 				if user.ID != tt.id {
 					t.Errorf("NewUser() ID = %v, want %v", user.ID, tt.id)
 				}
@@ -170,10 +168,8 @@ func TestValidateEntityDate(t *testing.T) {
 				} else {
 					t.Errorf("ValidateEntityDate() error type = %T, want *DateValidationError", err)
 				}
-			} else {
-				if err != nil {
-					t.Errorf("ValidateEntityDate() unexpected error = %v", err)
-				}
+			} else if err != nil {
+				t.Errorf("ValidateEntityDate() unexpected error = %v", err)
 			}
 		})
 	}
@@ -387,8 +383,10 @@ func BenchmarkValidateEntityDate(b *testing.B) {
 	}
 	entityDate := mustParseDate("2020-01-01")
 
-	
-	for b.Loop() {
+	b.ReportAllocs()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
 		_ = ValidateEntityDate(user, entityDate, "certification")
 	}
 }
@@ -396,8 +394,10 @@ func BenchmarkValidateEntityDate(b *testing.B) {
 func BenchmarkNewUser(b *testing.B) {
 	birthDate := mustParseDate("1990-01-01")
 
-	
-	for b.Loop() {
+	b.ReportAllocs()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
 		_, _ = NewUser("user123", birthDate, "John Doe")
 	}
 }
