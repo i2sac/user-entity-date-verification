@@ -27,12 +27,12 @@ func (e *DateValidationError) Error() string {
 
 // Validation error codes
 const (
-	ErrCodeInvalidDate     = "INVALID_DATE"
-	ErrCodeBeforeBirth     = "BEFORE_BIRTH"
-	ErrCodeFutureDate      = "FUTURE_DATE"
-	ErrCodeUnrealisticAge  = "UNREALISTIC_AGE"
-	ErrCodeInvalidUser     = "INVALID_USER"
-	ErrCodeDateTooOld      = "DATE_TOO_OLD"
+	ErrCodeInvalidDate    = "INVALID_DATE"
+	ErrCodeBeforeBirth    = "BEFORE_BIRTH"
+	ErrCodeFutureDate     = "FUTURE_DATE"
+	ErrCodeUnrealisticAge = "UNREALISTIC_AGE"
+	ErrCodeInvalidUser    = "INVALID_USER"
+	ErrCodeDateTooOld     = "DATE_TOO_OLD"
 )
 
 // Constants for validation limits
