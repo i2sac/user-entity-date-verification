@@ -42,7 +42,6 @@ linters:
     - misspell
     - gocritic
     - revive
-    - shadow
   disable:
     - prealloc
 
